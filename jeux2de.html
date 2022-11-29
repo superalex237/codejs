@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="fr"> 
+<head> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="librairie/bootstrap-icons/bootstrap-icons.css"/> 
+    <meta name = "viewport" content = "user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width" /> 
+<style>
+.terain{
+  background-color:silver;
+  width:100%;
+  height:500px;
+  text-align:center;
+}
+.machine{
+ background-color: orange;
+ width:100%;
+ height:100px;
+ position:relative;
+ top:0px;
+}
+.moi{
+ background-color: green;
+ width:100%;
+ height:100px;
+ position:relative;
+ top:380px;
+}
+.machine>i{
+ position:relative;
+ top:15px;
+ color: red;
+}
+.moi>i{
+ position:relative;
+ top:15px;
+ color: blue;
+}
+
+.milieu{
+ font-size:20px;
+ width:100%;
+ height:300px;
+}
+i{
+ font-size:50px;
+}
+.result .joueur{
+position:relative;
+top:150px;
+
+width:150px;
+height:30px;
+}
+</style>
+</head>
+<body>
+<div class="terain">
+  <div class="machine">
+    Machine<i id='mac' class="bi-dice-1-fill"></i>
+    point = <span class="pointy">10</span>
+  </div>
+  <div class="result">
+    <span class="aff"></span>
+    <button class="joueur">Jouer</button>
+  </di>
+  <div class="moi">
+    Joueur<i id='mo'class="bi-dice-1-fill"></i>
+    point = <span class="pointx">10</span>
+  </div>
+</div>
+
+<script>
+ var point = 10;
+ var jeux = document.querySelector(".joueur");
+ var pointx = document.querySelector(".pointx");
+ var pointy = document.querySelector(".pointy");
+ var aff =document.querySelector(".aff");
+ var moi = document.querySelector("#mo");
+ var machine = document.querySelector("#mac");
+ var tabmoi = ["bi-dice-1-fill","bi-dice-2-fill","bi-dice-3-fill","bi-dice-4-fill","bi-dice-5-fill","bi-dice-6-fill"];
+ var tabmachine = ["bi-dice-1-fill","bi-dice-2-fill","bi-dice-3-fill","bi-dice-4-fill","bi-dice-5-fill","bi-dice-6-fill"];
+ var tabcolor = ["maroon","yellow","black","silver","aqua","purple"];
+jeux.addEventListener('click',function(){
+var i = Math.round(Math.random()*5);
+var j = Math.round(Math.random()*5);
+ jeux.style.backgroundColor="orange";
+ moi.style.color= tabcolor[i];
+ machine.style.color= tabcolor[j];
+ moi.setAttribute('class',tabmoi[i]);
+ machine.setAttribute('class',tabmachine[j]);
+ if(i<j){
+ aff.innerHTML = "Vous avez perdus";
+ pointx.innerHTML = point--;
+ }else if(i>j){
+ aff.innerHTML = "Vous avez gagné";
+ pointy.innerHTML = point--;
+ }else if(i==j){
+ aff.innerHTML = "Il y'a égalité";
+ }
+ if(pointy.innerHTML == 0){
+  alert("Bravos vous avez gagné la partie!");
+  pointx.innerHTML = 10;
+  pointy.innerHTML = 10;
+ }else if(pointx.innerHTML == 0){
+  alert("Vous avez perdus la partie!");
+  pointx.innerHTML = 10;
+  pointy.innerHTML = 10;
+ }
+});
+</script>
+</body>
+</html>
